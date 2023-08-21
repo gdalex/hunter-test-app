@@ -11,15 +11,12 @@ HunterGate(
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-if (UNIX)
-    set(CMAKE_C_COMPILER winegcc)
-    set(CMAKE_CXX_COMPILER wineg++)
-    set(CMAKE_C_LINK_EXECUTABLE wineg++)
-endif()
+include("cmake/toolchain/os-toolchain.cmake")
 
 project(SimpleApp)
 
 hunter_add_package(SimpleLibrary)
+
 find_package(SimpleLibrary REQUIRED CONFIG)
 
 add_executable(SimpleApp SimpleApp.cpp)
